@@ -243,6 +243,32 @@ public:
         return result;
     }
 
+    // Производная полинома
+    Polynomial derivative() const {
+        if (degree() == 0) {
+            return Polynomial(T(0));
+        }
+
+        std::vector<T> deriv(coefficients.size() - 1);
+        for (size_t i = 1; i < coefficients.size(); ++i) {
+            deriv[i - 1] = coefficients[i] * T(i);
+        }
+
+        return Polynomial(deriv);
+    }
+
+    // Интеграл полинома
+    Polynomial integral(const T& constant = T(0)) const {
+        std::vector<T> integ(coefficients.size() + 1);
+        integ[0] = constant;
+
+        for (size_t i = 0; i < coefficients.size(); ++i) {
+            integ[i + 1] = coefficients[i] / T(i + 1);
+        }
+
+        return Polynomial(integ);
+    }
+
     std::string toString() const {
         if (isZero()) {
             return "0";
