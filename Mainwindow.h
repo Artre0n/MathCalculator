@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QTabWidget>
@@ -18,4 +17,3 @@ private:
     QWidget* createPlaceholder(const QString& text);
 };
 
-#endif // MAINWINDOW_H

@@ -1,5 +1,4 @@
-#ifndef MATRIXTAB_H
-#define MATRIXTAB_H
+#pragma once
 
 #include <QWidget>
 #include <QTableWidget>
@@ -9,6 +8,7 @@
 #include <QLabel>
 #include <QGroupBox>
 #include "OperationHistory.h"
+
 
 using MatrixD = Matrix<double>;
 
@@ -49,4 +49,3 @@ private:
     void setMatrixToTable(const MatrixD& mat, QTableWidget* table);
 };
 
-#endif // MATRIXTAB_H
