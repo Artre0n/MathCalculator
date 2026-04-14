@@ -4,6 +4,7 @@
 #include <QTabWidget>
 
 class MatrixTab;
+class PolynomialTab;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -14,6 +15,7 @@ public:
 private:
     QTabWidget *m_tabWidget;
     MatrixTab *m_matrixTab;
+	PolynomialTab* m_polynomialTab;
     QWidget* createPlaceholder(const QString& text);
 };
 

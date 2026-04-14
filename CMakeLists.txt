@@ -18,6 +18,9 @@ qt_add_executable(MathCalculator
     Matrix.h
     OperationHistory.h
     OperationHistory.cpp
+    Polynom.h
+    PolynomialTab.h
+    PolynomialTab.cpp
 )
 
 target_link_libraries(MathCalculator
