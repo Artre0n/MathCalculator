@@ -9,7 +9,7 @@ OperationHistoryDialog::OperationHistoryDialog(QWidget *parent)
 
     m_mainLayout = new QVBoxLayout(this);
 
-    QLabel *titleLabel = new QLabel("История операций (макс. 10)");
+    QLabel *titleLabel = new QLabel("История операций");
     titleLabel->setStyleSheet("font-size: 16px; font-weight: bold;");
     m_mainLayout->addWidget(titleLabel);
 

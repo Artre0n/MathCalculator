@@ -1,5 +1,4 @@
-#ifndef OPERATIONHISTORY_H
-#define OPERATIONHISTORY_H
+#pragma once
 
 #include <QWidget>
 #include <QDialog>
@@ -46,4 +45,3 @@ private:
     QVBoxLayout *m_contentLayout;
 };
 
-#endif // OPERATIONHISTORY_H
