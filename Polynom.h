@@ -38,7 +38,6 @@ public:
         trim();
     }
 
-    // Конструктор копирования
     Polynomial(const Polynomial& other) : coefficients(other.coefficients) {}
 
     Polynomial& operator=(const Polynomial& other) {
@@ -63,17 +62,14 @@ public:
         return coefficients[index];
     }
 
-    // Получение степени полинома
     int degree() const {
         return coefficients.size() - 1;
     }
 
-    // Получение коэффициентов
     const std::vector<T>& getCoefficients() const {
         return coefficients;
     }
 
-    // Вычисление значения полинома в точке
     T evaluate(const T& x) const {
         T result = T(0);
         T power = T(1);
@@ -86,7 +82,7 @@ public:
         return result;
     }
 
-    // Арифметические операции
+
     Polynomial operator+(const Polynomial& other) const {
         int maxSize = std::max(coefficients.size(), other.coefficients.size());
         std::vector<T> result(maxSize, T(0));
@@ -166,7 +162,7 @@ public:
         return Polynomial(result);
     }
 
-    // Операторы присваивания с арифметикой
+
     Polynomial& operator+=(const Polynomial& other) {
         *this = *this + other;
         return *this;
@@ -192,7 +188,7 @@ public:
         return *this;
     }
 
-    // Операторы сравнения
+
     bool operator==(const Polynomial& other) const {
         if (coefficients.size() != other.coefficients.size()) {
             return false;
@@ -211,7 +207,7 @@ public:
         return !(*this == other);
     }
 
-    // Вычисление корней (только для квадратных уравнений)
+
     std::vector<double> roots() const {
         std::vector<double> result;
 
@@ -243,7 +239,7 @@ public:
         return result;
     }
 
-    // Производная полинома
+
     Polynomial derivative() const {
         if (degree() == 0) {
             return Polynomial(T(0));
@@ -257,7 +253,6 @@ public:
         return Polynomial(deriv);
     }
 
-    // Интеграл полинома
     Polynomial integral(const T& constant = T(0)) const {
         std::vector<T> integ(coefficients.size() + 1);
         integ[0] = constant;
@@ -316,12 +311,10 @@ public:
     }
 
 
-    // Вывод полинома
     void print() const {
         std::cout << toString() << std::endl;
     }
 
-    // Статические методы
     static Polynomial zero() {
         return Polynomial(T(0));
     }
@@ -335,7 +328,7 @@ public:
     }
 };
 
-// Внешние операторы
+
 template<typename T>
 Polynomial<T> operator*(const T& scalar, const Polynomial<T>& poly) {
     return poly * scalar;
