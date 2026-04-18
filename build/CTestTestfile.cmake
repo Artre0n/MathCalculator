@@ -1,0 +1,36 @@
+# CMake generated Testfile for 
+# Source directory: C:/Users/ammin/source/repos/MathCalculator
+# Build directory: C:/Users/ammin/Source/Repos/MathCalculator/build
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+if(CTEST_CONFIGURATION_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+  add_test([=[TestMatrix]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/Debug/TestMatrix.exe")
+  set_tests_properties([=[TestMatrix]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;64;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+  add_test([=[TestMatrix]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/Release/TestMatrix.exe")
+  set_tests_properties([=[TestMatrix]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;64;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
+  add_test([=[TestMatrix]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/MinSizeRel/TestMatrix.exe")
+  set_tests_properties([=[TestMatrix]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;64;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
+  add_test([=[TestMatrix]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/RelWithDebInfo/TestMatrix.exe")
+  set_tests_properties([=[TestMatrix]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;64;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+else()
+  add_test([=[TestMatrix]=] NOT_AVAILABLE)
+endif()
+if(CTEST_CONFIGURATION_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+  add_test([=[TestPolynom]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/Debug/TestPolynom.exe")
+  set_tests_properties([=[TestPolynom]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;76;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+  add_test([=[TestPolynom]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/Release/TestPolynom.exe")
+  set_tests_properties([=[TestPolynom]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;76;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
+  add_test([=[TestPolynom]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/MinSizeRel/TestPolynom.exe")
+  set_tests_properties([=[TestPolynom]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;76;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
+  add_test([=[TestPolynom]=] "C:/Users/ammin/Source/Repos/MathCalculator/build/RelWithDebInfo/TestPolynom.exe")
+  set_tests_properties([=[TestPolynom]=] PROPERTIES  _BACKTRACE_TRIPLES "C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;76;add_test;C:/Users/ammin/source/repos/MathCalculator/CMakeLists.txt;0;")
+else()
+  add_test([=[TestPolynom]=] NOT_AVAILABLE)
+endif()

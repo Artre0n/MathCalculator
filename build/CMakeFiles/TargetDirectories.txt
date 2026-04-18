@@ -1,0 +1,7 @@
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/MathCalculator.dir
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/TestMatrix.dir
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/TestPolynom.dir
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/INSTALL.dir
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ammin/Source/Repos/MathCalculator/build/CMakeFiles/ZERO_CHECK.dir
