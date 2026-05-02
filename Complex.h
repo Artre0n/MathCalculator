@@ -87,6 +87,33 @@ public:
 		return Complex(real / scalar, imag / scalar);
 	}
 
+
+	friend Complex operator+(const T& scalar, const Complex& z) {
+		return Complex(scalar + z.real, z.imag);
+	}
+
+	friend Complex operator-(const T& scalar, const Complex& z) {
+		return Complex(scalar - z.real, -z.imag);
+	}
+
+	friend Complex operator*(const T& scalar, const Complex& z) {
+		return Complex(scalar * z.real, scalar * z.imag);
+	}
+
+	friend Complex operator/(const T& scalar, const Complex& z) {
+		T denominator = z.real * z.real + z.imag * z.imag;
+		if (denominator == T(0)) throw std::runtime_error("Деление на ноль");
+		return Complex(
+			scalar * z.real / denominator,
+			-scalar * z.imag / denominator
+		);
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const Complex& z) {
+		os << z.toString();
+		return os;
+	}
+
 	Complex operator+=(const Complex& other) {
 		real += other.real;
 		imag += other.imag;
@@ -313,98 +340,3 @@ public:
 		return Complex(T(0), T(1));
 	}
 };
-
-// Внешние операторы
-template<typename T>
-Complex<T> operator+(const T& scalar, const Complex<T>& z) {
-	return z + scalar;
-}
-
-template<typename T>
-Complex<T> operator-(const T& scalar, const Complex<T>& z) {
-	return Complex<T>(scalar) - z;
-}
-
-template<typename T>
-Complex<T> operator*(const T& scalar, const Complex<T>& z) {
-	return z * scalar;
-}
-
-template<typename T>
-Complex<T> operator/(const T& scalar, const Complex<T>& z) {
-	return Complex<T>(scalar) / z;
-}
-
-// Оператор вывода
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const Complex<T>& z) {
-	os << z.toString();
-	return os;
-}
-
-// Оператор ввода
-template<typename T>
-std::istream& operator>>(std::istream& is, Complex<T>& z) {
-	T r, i;
-	char ch;
-	is >> r >> ch >> i >> ch;
-	if (ch == '+') {
-		z = Complex<T>(r, i);
-	}
-	else if (ch == '-') {
-		z = Complex<T>(r, -i);
-	}
-	else {
-		is.setstate(std::ios::failbit);
-	}
-	return is;
-}
-
-// Тригонометрические функции (внешние)
-template<typename T>
-Complex<T> sin(const Complex<T>& z) {
-	return z.sin();
-}
-
-template<typename T>
-Complex<T> cos(const Complex<T>& z) {
-	return z.cos();
-}
-
-template<typename T>
-Complex<T> tan(const Complex<T>& z) {
-	return z.tan();
-}
-
-// Экспонента и логарифм
-template<typename T>
-Complex<T> exp(const Complex<T>& z) {
-	return z.exp();
-}
-
-template<typename T>
-Complex<T> log(const Complex<T>& z) {
-	return z.log();
-}
-
-template<typename T>
-Complex<T> sqrt(const Complex<T>& z) {
-	return z.sqrt();
-}
-
-// Степень
-template<typename T>
-Complex<T> pow(const Complex<T>& z, int n) {
-	return z.pow(n);
-}
-
-// Модуль и аргумент
-template<typename T>
-T abs(const Complex<T>& z) {
-	return z.abs();
-}
-
-template<typename T>
-T arg(const Complex<T>& z) {
-	return z.arg();
-}
