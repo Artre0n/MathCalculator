@@ -162,4 +162,249 @@ public:
 	Complex conjugate() const {
 		return Complex(real, -imag);
 	}
+
+	// Квадрат модуля
+	T norm() const {
+		return real * real + imag * imag;
+	}
+
+
+	// Операторы сравнения
+	bool operator==(const Complex& other) const {
+		return real == other.real && imag == other.imag;
+	}
+
+	bool operator!=(const Complex& other) const {
+		return !(*this == other);
+	}
+
+	bool operator<(const Complex& other) const {
+		return abs() < other.abs();
+	}
+
+	bool operator>(const Complex& other) const {
+		return abs() > other.abs();
+	}
+
+	Complex pow(int n) const {
+		if (n == 0) {
+			return Complex(T(1), T(0));
+		}
+
+		if (n < 0) {
+			return Complex(T(1), T(0)) / pow(-n);
+		}
+
+		Complex result = *this;
+		for (int i = 1; i < n; ++i) {
+			result = result * *this;
+		}
+		return result;
+	}
+
+	// Корень n-й степени (возвращает главный корень)
+	Complex root(int n) const {
+		if (n <= 0) {
+			throw std::invalid_argument("Степень корня должна быть положительной");
+		}
+
+		T r = std::pow(abs(), T(1) / n);
+		T theta = arg() / n;
+
+		return Complex(r * std::cos(theta), r * std::sin(theta));
+	}
+
+	// Экспонента комплексного числа
+	Complex exp() const {
+		T e_real = std::exp(real);
+		return Complex(e_real * std::cos(imag), e_real * std::sin(imag));
+	}
+
+	// Натуральный логарифм
+	Complex log() const {
+		if (real == T(0) && imag == T(0)) {
+			throw std::runtime_error("Логарифм нуля не определён");
+		}
+		return Complex(std::log(abs()), arg());
+	}
+
+
+	// Тригонометрические функции
+	Complex sin() const {
+		return Complex(
+			std::sin(real) * std::cosh(imag),
+			std::cos(real) * std::sinh(imag)
+		);
+	}
+
+	Complex cos() const {
+		return Complex(
+			std::cos(real) * std::cosh(imag),
+			-std::sin(real) * std::sinh(imag)
+		);
+	}
+
+	Complex tan() const {
+		return sin() / cos();
+	}
+
+	// Гиперболические функции
+	Complex sinh() const {
+		return Complex(
+			std::sinh(real) * std::cos(imag),
+			std::cosh(real) * std::sin(imag)
+		);
+	}
+
+	Complex cosh() const {
+		return Complex(
+			std::cosh(real) * std::cos(imag),
+			std::sinh(real) * std::sin(imag)
+		);
+	}
+
+	Complex tanh() const {
+		return sinh() / cosh();
+	}
+
+	// Квадратный корень
+	Complex sqrt() const {
+		return root(2);
+	}
+
+	// Строковое представление
+	std::string toString() const {
+		std::stringstream ss;
+
+		if (imag == T(0)) {
+			ss << real;
+		}
+		else if (real == T(0)) {
+			ss << imag << "i";
+		}
+		else {
+			ss << real;
+			if (imag > T(0)) {
+				ss << "+" << imag << "i";
+			}
+			else {
+				ss << imag << "i";
+			}
+		}
+
+		return ss.str();
+	}
+
+	// Вывод комплексного числа
+	void print() const {
+		std::cout << toString();
+	}
+
+	// Статические методы
+	static Complex zero() {
+		return Complex(T(0), T(0));
+	}
+
+	static Complex one() {
+		return Complex(T(1), T(0));
+	}
+
+	static Complex i() {
+		return Complex(T(0), T(1));
+	}
 };
+
+// Внешние операторы
+template<typename T>
+Complex<T> operator+(const T& scalar, const Complex<T>& z) {
+	return z + scalar;
+}
+
+template<typename T>
+Complex<T> operator-(const T& scalar, const Complex<T>& z) {
+	return Complex<T>(scalar) - z;
+}
+
+template<typename T>
+Complex<T> operator*(const T& scalar, const Complex<T>& z) {
+	return z * scalar;
+}
+
+template<typename T>
+Complex<T> operator/(const T& scalar, const Complex<T>& z) {
+	return Complex<T>(scalar) / z;
+}
+
+// Оператор вывода
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Complex<T>& z) {
+	os << z.toString();
+	return os;
+}
+
+// Оператор ввода
+template<typename T>
+std::istream& operator>>(std::istream& is, Complex<T>& z) {
+	T r, i;
+	char ch;
+	is >> r >> ch >> i >> ch;
+	if (ch == '+') {
+		z = Complex<T>(r, i);
+	}
+	else if (ch == '-') {
+		z = Complex<T>(r, -i);
+	}
+	else {
+		is.setstate(std::ios::failbit);
+	}
+	return is;
+}
+
+// Тригонометрические функции (внешние)
+template<typename T>
+Complex<T> sin(const Complex<T>& z) {
+	return z.sin();
+}
+
+template<typename T>
+Complex<T> cos(const Complex<T>& z) {
+	return z.cos();
+}
+
+template<typename T>
+Complex<T> tan(const Complex<T>& z) {
+	return z.tan();
+}
+
+// Экспонента и логарифм
+template<typename T>
+Complex<T> exp(const Complex<T>& z) {
+	return z.exp();
+}
+
+template<typename T>
+Complex<T> log(const Complex<T>& z) {
+	return z.log();
+}
+
+template<typename T>
+Complex<T> sqrt(const Complex<T>& z) {
+	return z.sqrt();
+}
+
+// Степень
+template<typename T>
+Complex<T> pow(const Complex<T>& z, int n) {
+	return z.pow(n);
+}
+
+// Модуль и аргумент
+template<typename T>
+T abs(const Complex<T>& z) {
+	return z.abs();
+}
+
+template<typename T>
+T arg(const Complex<T>& z) {
+	return z.arg();
+}
