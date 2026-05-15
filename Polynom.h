@@ -137,7 +137,7 @@ public:
 
     Polynomial operator/(const Polynomial& other) const {
         if (other.isZero()) {
-            throw std::invalid_argument("Деление на нулевой полином");
+            throw std::invalid_argument("Р”РµР»РµРЅРёРµ РЅР° РЅСѓР»РµРІРѕР№ РїРѕР»РёРЅРѕРј");
         }
 
         if (degree() < other.degree()) {
