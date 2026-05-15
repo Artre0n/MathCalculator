@@ -82,7 +82,6 @@ public:
         return result;
     }
 
-
     Polynomial operator+(const Polynomial& other) const {
         int maxSize = std::max(coefficients.size(), other.coefficients.size());
         std::vector<T> result(maxSize, T(0));
@@ -162,6 +161,33 @@ public:
         return Polynomial(result);
     }
 
+    Polynomial operator%(const Polynomial& other) const {
+        if (other.isZero()) {
+            throw std::invalid_argument("Деление на нулевой полином");
+        }
+
+        if (degree() < other.degree()) {
+            return *this;
+        }
+
+        std::vector<T> remainder = coefficients;
+
+        for (int i = degree() - other.degree(); i >= 0; --i) {
+            if (remainder.size() <= i + other.degree()) continue;
+
+            T coeff = remainder[i + other.degree()] / other.coefficients.back();
+
+            for (size_t j = 0; j <= other.degree(); ++j) {
+                remainder[i + j] -= coeff * other.coefficients[j];
+            }
+        }
+
+        while (remainder.size() > 1 && remainder.back() == T(0)) {
+            remainder.pop_back();
+        }
+
+        return Polynomial(remainder);
+    }
 
     Polynomial& operator+=(const Polynomial& other) {
         *this = *this + other;
@@ -188,7 +214,6 @@ public:
         return *this;
     }
 
-
     bool operator==(const Polynomial& other) const {
         if (coefficients.size() != other.coefficients.size()) {
             return false;
@@ -206,7 +231,6 @@ public:
     bool operator!=(const Polynomial& other) const {
         return !(*this == other);
     }
-
 
     std::vector<double> roots() const {
         std::vector<double> result;
@@ -238,7 +262,6 @@ public:
 
         return result;
     }
-
 
     Polynomial derivative() const {
         if (degree() == 0) {
@@ -327,7 +350,6 @@ public:
         return Polynomial({ T(0), T(1) });
     }
 };
-
 
 template<typename T>
 Polynomial<T> operator*(const T& scalar, const Polynomial<T>& poly) {
