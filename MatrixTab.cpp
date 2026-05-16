@@ -230,7 +230,7 @@ MatrixTab::MatrixTab(QWidget* parent) : QWidget(parent) {
 
     /// Заголовок
     auto* headerLayout = new QHBoxLayout();
-    auto* titleLabel = new QLabel("⊞ Матричный калькулятор");
+    auto* titleLabel = new QLabel("🧮 Матричный калькулятор");
     titleLabel->setStyleSheet("font-size: 18px; font-weight: bold; color: #212121;");
     headerLayout->addWidget(titleLabel);
     headerLayout->addStretch();
@@ -335,7 +335,8 @@ MatrixTab::MatrixTab(QWidget* parent) : QWidget(parent) {
     m_inputTableA->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     m_inputTableA->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     m_inputTableA->setAlternatingRowColors(true);
-    layoutA->addWidget(m_inputTableA);
+    m_inputTableA->setMinimumHeight(150);
+    layoutA->addWidget(m_inputTableA, 1);
 
     matricesLayout->addWidget(m_groupA, 1);
 
@@ -386,7 +387,8 @@ MatrixTab::MatrixTab(QWidget* parent) : QWidget(parent) {
     m_inputTableB->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     m_inputTableB->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     m_inputTableB->setAlternatingRowColors(true);
-    layoutB->addWidget(m_inputTableB);
+    m_inputTableB->setMinimumHeight(150);
+    layoutB->addWidget(m_inputTableB, 1);
 
     matricesLayout->addWidget(m_groupB, 1);
     mainLayout->addLayout(matricesLayout, 3);

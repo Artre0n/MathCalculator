@@ -1,34 +1,58 @@
 #include "MainWindow.h"
 #include "MatrixTab.h"
 #include "PolynomialTab.h"
-#include <QVBoxLayout>
-#include <QLabel>
 
+/// Стиль для вкладок
+static const char* TABWIDGET_STYLE = R"(
+    QTabWidget::pane {
+        border: none;
+        background-color: #f5f7fa;
+        top: -1px;
+    }
+    QTabBar::tab {
+        background-color: #e0e0e0;
+        color: #616161;
+        border: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 10px 20px;
+        margin-right: 4px;
+        font-weight: 600;
+        font-size: 13px;
+    }
+    QTabBar::tab:hover {
+        background-color: #eeeeee;
+        color: #424242;
+    }
+    QTabBar::tab:selected {
+        background-color: white;
+        color: #2196f3;
+        border-bottom: 3px solid #2196f3;
+    }
+    QTabBar::tab:!selected {
+        margin-top: 3px;
+    }
+)";
+
+/// Конструктор
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    setWindowTitle("Математический Калькулятор");
+    setWindowTitle("Математический калькулятор");
     resize(1000, 750);
 
     m_tabWidget = new QTabWidget(this);
-    setCentralWidget(m_tabWidget);
+    m_tabWidget->setStyleSheet(TABWIDGET_STYLE);
+    m_tabWidget->setDocumentMode(true);
 
     // Вкладка 1: Матрицы
     m_matrixTab = new MatrixTab();
-    m_tabWidget->addTab(m_matrixTab, "Матрицы");
+    m_tabWidget->addTab(m_matrixTab, "🧮  Матрицы");
 
     // Вкладка 2: Полиномы
     m_polynomialTab = new PolynomialTab();
-    m_tabWidget->addTab(m_polynomialTab, "Полиномы");
+    m_tabWidget->addTab(m_polynomialTab, "🔢  Полиномы");
 
+    setCentralWidget(m_tabWidget);
 }
 
+/// Деструктор
 MainWindow::~MainWindow() {}
-
-QWidget* MainWindow::createPlaceholder(const QString& text) {
-    QWidget* w = new QWidget();
-    QVBoxLayout* l = new QVBoxLayout(w);
-    QLabel* label = new QLabel(text);
-    label->setAlignment(Qt::AlignCenter);
-    label->setStyleSheet("font-size: 14px; color: gray; padding: 20px;");
-    l->addWidget(label);
-    return w;
-}
