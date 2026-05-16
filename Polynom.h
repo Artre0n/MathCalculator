@@ -19,10 +19,7 @@ private:
         }
     }
 
-    bool isZero() const {
-        return coefficients.size() == 1 && coefficients[0] == T(0);
-    }
-
+    
 public:
     Polynomial() : coefficients(1, T(0)) {}
 
@@ -45,6 +42,10 @@ public:
             coefficients = other.coefficients;
         }
         return *this;
+    }
+
+    bool isZero() const {
+        return coefficients.size() == 1 && coefficients[0] == T(0);
     }
 
     T& operator[](int index) {

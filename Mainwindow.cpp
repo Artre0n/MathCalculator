@@ -19,9 +19,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_polynomialTab = new PolynomialTab();
     m_tabWidget->addTab(m_polynomialTab, "Полиномы");
 
-    // Остальные вкладки
-    m_tabWidget->addTab(createPlaceholder("Модуль производных в разработке..."), "Производные");
-    m_tabWidget->addTab(createPlaceholder("Модуль интегралов в разработке..."), "Интегралы");
 }
 
 MainWindow::~MainWindow() {}
