@@ -22,6 +22,7 @@ qt_add_executable(MathCalculator
     PolynomialTab.h
     PolynomialTab.cpp
     Polynom.h
+    Complex.h
 )
 
 target_link_libraries(MathCalculator

@@ -513,6 +513,7 @@ void PolynomialTab::setPolynomialToTable(const PolynomialD& poly, QTableWidget* 
 QString PolynomialTab::polynomialToHtml(const PolynomialD& poly) const {
     QString html = polynomialToString(poly);
     // Заменяем обычные степени на Unicode-символы 
+    html.replace("x^10", "x¹⁰");
     html.replace("x^0", "x⁰");
     html.replace("x^1", "x¹");
     html.replace("x^2", "x²");
@@ -523,7 +524,6 @@ QString PolynomialTab::polynomialToHtml(const PolynomialD& poly) const {
     html.replace("x^7", "x⁷");
     html.replace("x^8", "x⁸");
     html.replace("x^9", "x⁹");
-    html.replace("x^10", "x¹⁰");
     return html;
 }
 
