@@ -1,7 +1,7 @@
 #include "MainWindow.h"
-#include "MatrixTab.h"
-#include "PolynomialTab.h"
-#include "ComplexTab.h"
+#include "Matrix/MatrixTab.h"
+#include "Polynom/PolynomialTab.h"
+#include "Complex/ComplexTab.h"
 
 /// Стиль для вкладок
 static const char* TABWIDGET_STYLE = R"(
