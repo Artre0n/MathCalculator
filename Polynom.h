@@ -19,9 +19,7 @@ private:
         }
     }
 
-    bool isZero() const {
-        return coefficients.size() == 1 && coefficients[0] == T(0);
-    }
+    
 
 public:
     Polynomial() : coefficients(1, T(0)) {}
@@ -39,6 +37,10 @@ public:
     }
 
     Polynomial(const Polynomial& other) : coefficients(other.coefficients) {}
+
+    bool isZero() const {
+        return coefficients.size() == 1 && coefficients[0] == T(0);
+    }
 
     Polynomial& operator=(const Polynomial& other) {
         if (this != &other) {
@@ -137,7 +139,7 @@ public:
 
     Polynomial operator/(const Polynomial& other) const {
         if (other.isZero()) {
-            throw std::invalid_argument("Деление на нулевой полином");
+            throw std::invalid_argument("Ð”ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½ÑƒÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼");
         }
 
         if (degree() < other.degree()) {
@@ -163,7 +165,7 @@ public:
 
     Polynomial operator%(const Polynomial& other) const {
         if (other.isZero()) {
-            throw std::invalid_argument("������� �� ������� �������");
+            throw std::invalid_argument("Ð”ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½ÑƒÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼");
         }
 
         if (degree() < other.degree()) {
