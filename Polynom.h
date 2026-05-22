@@ -139,7 +139,7 @@ public:
 
     Polynomial operator/(const Polynomial& other) const {
         if (other.isZero()) {
-            throw std::invalid_argument("Деление на нулевой полином");
+            throw std::invalid_argument("Ð”ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½ÑƒÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼");
         }
 
         if (degree() < other.degree()) {
@@ -165,7 +165,7 @@ public:
 
     Polynomial operator%(const Polynomial& other) const {
         if (other.isZero()) {
-            throw std::invalid_argument("Деление на нулевой полином");
+            throw std::invalid_argument("Ð”ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½ÑƒÐ»ÐµÐ²Ð¾Ð¹ Ð¿Ð¾Ð»Ð¸Ð½Ð¾Ð¼");
         }
 
         if (degree() < other.degree()) {

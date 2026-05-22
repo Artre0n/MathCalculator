@@ -62,7 +62,7 @@ public:
         T denominator = other.real * other.real + other.imag * other.imag;
 
         if(denominator == T(0)) {
-            throw std::invalid_argument("Деление на нулевое комплексное число");
+            throw std::invalid_argument("ÐÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½ÑÐ»ÐµÐ²Ð¾Ðµ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ðµ ÑÐ¸ÑÐ»Ð¾");
         }
 
         return Complex((real * other.real + imag * other.imag) / denominator, (imag * other.real - real * other.imag) / denominator);
@@ -82,7 +82,7 @@ public:
 
     Complex operator/(const T& scalar) const {
         if(scalar == T(0)) {
-            throw std::invalid_argument("Деление на ноль");
+            throw std::invalid_argument("ÐÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½Ð¾Ð»Ñ");
         }
         return Complex(real / scalar, imag / scalar);
     }
@@ -102,7 +102,7 @@ public:
 
     friend Complex operator/(const T& scalar, const Complex& z) {
         T denominator = z.real * z.real + z.imag * z.imag;
-        if (denominator == T(0)) throw std::runtime_error("Деление на ноль");
+        if (denominator == T(0)) throw std::runtime_error("ÐÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½Ð¾Ð»Ñ");
         return Complex(
             scalar * z.real / denominator,
             -scalar * z.imag / denominator
@@ -137,7 +137,7 @@ public:
     Complex operator/=(const Complex& other) {
         T denominator = other.real * other.real + other.imag * other.imag;
         if(denominator == T(0)) {
-            throw std::invalid_argument("Деление на нулевое комплексное число");
+            throw std::invalid_argument("ÐÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½ÑÐ»ÐµÐ²Ð¾Ðµ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ðµ ÑÐ¸ÑÐ»Ð¾");
         }
         T r = (real * other.real + imag * other.imag) / denominator;
         T i = (imag * other.real - real * other.imag) / denominator;
@@ -164,7 +164,7 @@ public:
 
     Complex operator/=(const T& scalar) {
         if(scalar == T(0)) {
-            throw std::invalid_argument("Деление на ноль");
+            throw std::invalid_argument("ÐÐµÐ»ÐµÐ½Ð¸Ðµ Ð½Ð° Ð½Ð¾Ð»Ñ");
         }
         real /= scalar;
         imag /= scalar;
@@ -175,28 +175,28 @@ public:
         return Complex(-real, -imag);
     }
 
-    //Модуль комплексного числа
+    //ÐÐ¾Ð´ÑÐ»Ñ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ð³Ð¾ ÑÐ¸ÑÐ»Ð°
     T abs() const {
         return std::sqrt(real * real + imag * imag);
     }
 
-    //Аргумент комплексного числа
+    //ÐÑÐ³ÑÐ¼ÐµÐ½Ñ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ð³Ð¾ ÑÐ¸ÑÐ»Ð°
     T arg() const {
         return std::atan2(imag, real);
     }
 
-    //Комплексное сопряжение
+    //ÐÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ðµ ÑÐ¾Ð¿ÑÑÐ¶ÐµÐ½Ð¸Ðµ
     Complex conjugate() const {
         return Complex(real, -imag);
     }
 
-    // Квадрат модуля
+    // ÐÐ²Ð°Ð´ÑÐ°Ñ Ð¼Ð¾Ð´ÑÐ»Ñ
     T norm() const {
         return real * real + imag * imag;
     }
 
 
-    // Операторы сравнения
+    // ÐÐ¿ÐµÑÐ°ÑÐ¾ÑÑ ÑÑÐ°Ð²Ð½ÐµÐ½Ð¸Ñ
     bool operator==(const Complex& other) const {
         return real == other.real && imag == other.imag;
     }
@@ -229,10 +229,10 @@ public:
         return result;
     }
 
-    // Корень n-й степени (возвращает главный корень)
+    // ÐÐ¾ÑÐµÐ½Ñ n-Ð¹ ÑÑÐµÐ¿ÐµÐ½Ð¸ (Ð²Ð¾Ð·Ð²ÑÐ°ÑÐ°ÐµÑ Ð³Ð»Ð°Ð²Ð½ÑÐ¹ ÐºÐ¾ÑÐµÐ½Ñ)
     Complex root(int n) const {
         if (n <= 0) {
-            throw std::invalid_argument("Степень корня должна быть положительной");
+            throw std::invalid_argument("Ð¡ÑÐµÐ¿ÐµÐ½Ñ ÐºÐ¾ÑÐ½Ñ Ð´Ð¾Ð»Ð¶Ð½Ð° Ð±ÑÑÑ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸ÑÐµÐ»ÑÐ½Ð¾Ð¹");
         }
 
         T r = std::pow(abs(), T(1) / n);
@@ -241,22 +241,22 @@ public:
         return Complex(r * std::cos(theta), r * std::sin(theta));
     }
 
-    // Экспонента комплексного числа
+    // Ð­ÐºÑÐ¿Ð¾Ð½ÐµÐ½ÑÐ° ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ð³Ð¾ ÑÐ¸ÑÐ»Ð°
     Complex exp() const {
         T e_real = std::exp(real);
         return Complex(e_real * std::cos(imag), e_real * std::sin(imag));
     }
 
-    // Натуральный логарифм
+    // ÐÐ°ÑÑÑÐ°Ð»ÑÐ½ÑÐ¹ Ð»Ð¾Ð³Ð°ÑÐ¸ÑÐ¼
     Complex log() const {
         if (real == T(0) && imag == T(0)) {
-            throw std::runtime_error("Логарифм нуля не определён");
+            throw std::runtime_error("ÐÐ¾Ð³Ð°ÑÐ¸ÑÐ¼ Ð½ÑÐ»Ñ Ð½Ðµ Ð¾Ð¿ÑÐµÐ´ÐµÐ»ÑÐ½");
         }
         return Complex(std::log(abs()), arg());
     }
 
 
-    // Тригонометрические функции
+    // Ð¢ÑÐ¸Ð³Ð¾Ð½Ð¾Ð¼ÐµÑÑÐ¸ÑÐµÑÐºÐ¸Ðµ ÑÑÐ½ÐºÑÐ¸Ð¸
     Complex sin() const {
         return Complex(
             std::sin(real) * std::cosh(imag),
@@ -275,7 +275,7 @@ public:
         return sin() / cos();
     }
 
-    // Гиперболические функции
+    // ÐÐ¸Ð¿ÐµÑÐ±Ð¾Ð»Ð¸ÑÐµÑÐºÐ¸Ðµ ÑÑÐ½ÐºÑÐ¸Ð¸
     Complex sinh() const {
         return Complex(
             std::sinh(real) * std::cos(imag),
@@ -294,12 +294,12 @@ public:
         return sinh() / cosh();
     }
 
-    // Квадратный корень
+    // ÐÐ²Ð°Ð´ÑÐ°ÑÐ½ÑÐ¹ ÐºÐ¾ÑÐµÐ½Ñ
     Complex sqrt() const {
         return root(2);
     }
 
-    // Строковое представление
+    // Ð¡ÑÑÐ¾ÐºÐ¾Ð²Ð¾Ðµ Ð¿ÑÐµÐ´ÑÑÐ°Ð²Ð»ÐµÐ½Ð¸Ðµ
     std::string toString() const {
         std::stringstream ss;
 
@@ -322,12 +322,12 @@ public:
         return ss.str();
     }
 
-    // Вывод комплексного числа
+    // ÐÑÐ²Ð¾Ð´ ÐºÐ¾Ð¼Ð¿Ð»ÐµÐºÑÐ½Ð¾Ð³Ð¾ ÑÐ¸ÑÐ»Ð°
     void print() const {
         std::cout << toString();
     }
 
-    // Статические методы
+    // Ð¡ÑÐ°ÑÐ¸ÑÐµÑÐºÐ¸Ðµ Ð¼ÐµÑÐ¾Ð´Ñ
     static Complex zero() {
         return Complex(T(0), T(0));
     }
