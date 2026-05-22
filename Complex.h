@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <sstream>
 
 template<typename T>
 class Complex {

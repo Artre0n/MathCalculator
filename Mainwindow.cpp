@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "MatrixTab.h"
 #include "PolynomialTab.h"
+#include "ComplexTab.h"
 
 /// Стиль для вкладок
 static const char* TABWIDGET_STYLE = R"(
@@ -44,12 +45,16 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     m_tabWidget->setDocumentMode(true);
 
     // Вкладка 1: Матрицы
-    m_matrixTab = new MatrixTab();
+    m_matrixTab = new MatrixTab(this);
     m_tabWidget->addTab(m_matrixTab, "🧮  Матрицы");
 
     // Вкладка 2: Полиномы
-    m_polynomialTab = new PolynomialTab();
+    m_polynomialTab = new PolynomialTab(this);
     m_tabWidget->addTab(m_polynomialTab, "🔢  Полиномы");
+
+    // Вкладка 3: Комплексные числа
+    m_complexTab = new ComplexTab(this);
+    m_tabWidget->addTab(m_complexTab, "🔣  Комплексные");
 
     setCentralWidget(m_tabWidget);
 }
