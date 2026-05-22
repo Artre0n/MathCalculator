@@ -197,9 +197,9 @@ PolynomialTab::PolynomialTab(QWidget* parent) : QWidget(parent) {
     mainLayout->setSpacing(16);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
-    
-    #pragma region Заголовок и панель управления
-    
+
+#pragma region Заголовок и панель управления
+
     auto* headerLayout = new QHBoxLayout();
     headerLayout->setSpacing(12);
 
@@ -253,10 +253,10 @@ PolynomialTab::PolynomialTab(QWidget* parent) : QWidget(parent) {
 
     controlLayout->addStretch();
     mainLayout->addWidget(controlFrame);
-    #pragma endregion
-    
-    #pragma region Область полиномов 
-    
+#pragma endregion
+
+#pragma region Область полиномов 
+
     auto* polyLayout = new QHBoxLayout();
     polyLayout->setSpacing(16);
 
@@ -315,7 +315,7 @@ PolynomialTab::PolynomialTab(QWidget* parent) : QWidget(parent) {
 
     polyLayout->addWidget(m_groupA, 1);
 
-    // ─── Полином B ───
+    // Полином B
     m_groupB = new QGroupBox("Полином B", this);
     m_groupB->setStyleSheet(GROUP_STYLE);
     auto* layoutB = new QVBoxLayout(m_groupB);
@@ -370,10 +370,10 @@ PolynomialTab::PolynomialTab(QWidget* parent) : QWidget(parent) {
 
     polyLayout->addWidget(m_groupB, 1);
     mainLayout->addLayout(polyLayout, 2);
-    #pragma endregion
-    
-    #pragma region Область результата
-    
+#pragma endregion
+
+#pragma region Область результата
+
     auto* resultFrame = new QFrame();
     resultFrame->setStyleSheet("background-color: white; border-radius: 12px; border: 1px solid #e0e0e0;");
     auto* resultLayout = new QVBoxLayout(resultFrame);
@@ -397,20 +397,20 @@ PolynomialTab::PolynomialTab(QWidget* parent) : QWidget(parent) {
     resultLayout->addWidget(m_resultEdit);
 
     mainLayout->addWidget(resultFrame);
-    #pragma endregion
-   
-    #pragma region Статусная строка
-   
+#pragma endregion
+
+#pragma region Статусная строка
+
     m_statusLabel = new QLabel("Готов к работе • Введите коэффициенты и выберите операцию", this);
     m_statusLabel->setStyleSheet(STATUS_STYLE + QString("color: #1565c0; background-color: #e3f2fd;"));
     m_statusLabel->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(m_statusLabel);
 
-    // Инициализация таблиц при старте
+    // Инициализация таблиц
     onDegreeAChanged(2);
     onDegreeBChanged(2);
     onOperationChanged(0);
-    #pragma endregion
+#pragma endregion
 }
 #pragma endregion
 
@@ -422,7 +422,6 @@ void PolynomialTab::buildPolynomialTable(QTableWidget* table, int degree) {
     table->setColumnCount(degree + 1);
 
     // Формируем заголовки столбцов (от старшей степени к младшей)
-    // Используем Unicode-символы для красивых степеней
     QStringList headers;
     for (int i = degree; i >= 0; --i) {
         switch (i) {
@@ -580,7 +579,7 @@ void PolynomialTab::onOperationChanged(int index) {
     case 0: hint = "Сложение: A(x) + B(x)"; break;
     case 1: hint = "Вычитание: A(x) − B(x)"; break;
     case 2: hint = "Умножение: A(x) × B(x)"; break;
-    case 3: hint = "Деление: A(x) / B(x)  (остаток отбрасывается)"; break;
+    case 3: hint = "Деление: частное A/B и остаток A%B"; break;
     case 4: hint = "Вычисление: подставьте значение x в A(x)"; break;
     case 5: hint = "Производная: d/dx[A(x)]"; break;
     case 6: hint = "Интеграл: ∫A(x)dx + C"; break;
@@ -697,14 +696,16 @@ void PolynomialTab::onCalculate() {
             statusMsg = "Умножение выполнено";
             break;
         }
-        case 3: { // Деление A / B
+        case 3: { // Деление A / B + остаток A % B
             PolynomialD polyB = getPolynomialFromTable(m_tableB);
             if (polyB.isZero()) {
                 throw std::invalid_argument("Деление на нулевой полином невозможно");
             }
             PolynomialD res = polyA / polyB;
-            resultText = polynomialToString(res);
-            statusMsg = "Деление выполнено (частное)";
+            PolynomialD remainder = polyA % polyB;
+            resultText = "Частное (A / B):\n" + polynomialToString(res) +
+                "\n\nОстаток (A % B):\n" + polynomialToString(remainder);
+            statusMsg = "Деление выполнено: частное и остаток";
             break;
         }
         case 4: { // Вычисление A(x)

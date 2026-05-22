@@ -5,6 +5,7 @@
 
 class MatrixTab;
 class PolynomialTab;
+class ComplexTab;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -16,4 +17,5 @@ private:
     QTabWidget* m_tabWidget;
     MatrixTab* m_matrixTab;
     PolynomialTab* m_polynomialTab;
+	ComplexTab* m_complexTab;
 };

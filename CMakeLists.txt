@@ -7,22 +7,36 @@ qt_standard_project_setup()
 
 qt_add_executable(MathCalculator
     WIN32 MACOSX_BUNDLE
-    main.cpp
-    Mainwindow.cpp
-    Mainwindow.h
+    app/main.cpp
 
+    gui/Mainwindow.cpp
+    gui/Mainwindow.h
 
+    core/Matrix.h
+    core/Polynom.h
+    core/Complex.h
 
-    MatrixTab.h
-    MatrixTab.cpp
-    Matrix.h
-    OperationHistory.h
-    OperationHistory.cpp
+    gui/Matrix/MatrixTab.h
+    gui/Matrix/MatrixTab.cpp
+    gui/Matrix/OperationHistory.h
+    gui/Matrix/OperationHistory.cpp
 
-    PolynomialTab.h
-    PolynomialTab.cpp
-    Polynom.h
-    Complex.h
+    gui/Polynom/PolynomialTab.h
+    gui/Polynom/PolynomialTab.cpp
+
+    gui/Complex/ComplexTab.h
+    gui/Complex/ComplexTab.cpp
+
+)
+
+target_include_directories(MathCalculator PRIVATE
+    .
+    app
+    gui
+    gui/Complex
+    gui/Matrix
+    gui/Polynom
+    core
 )
 
 target_link_libraries(MathCalculator
