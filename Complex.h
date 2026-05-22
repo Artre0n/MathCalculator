@@ -13,7 +13,6 @@ public:
     Complex() {
         real = T(0);
         imag = T(0);
-
     }
 
     Complex(const T& r) {

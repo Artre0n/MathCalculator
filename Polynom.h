@@ -17,7 +17,6 @@ private:
         if (coefficients.empty()) {
             coefficients.push_back(T(0));
         }
-
     }
 
     
