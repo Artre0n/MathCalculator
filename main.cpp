@@ -1,8 +1,10 @@
 #include <QApplication>
+#include <QStyleHints>
 #include "MainWindow.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
+    QGuiApplication::styleHints()->setColorScheme(Qt::ColorScheme::Light);
 
     MainWindow w;
     w.show();
