@@ -27,6 +27,8 @@ qt_add_executable(MathCalculator
     gui/Complex/ComplexTab.h
     gui/Complex/ComplexTab.cpp
 
+    resources/MathCalculatorIcon.rc
+
 )
 
 target_include_directories(MathCalculator PRIVATE
