@@ -38,11 +38,11 @@ MathCalculator/
 │   └── Polynom/              # Вкладка полиномов
 ├── tests/                    # Модульные тесты
 │   ├── test_utils.h          # Утилиты для тестов
-│   ├── main_test_.cpp              # Точка входа тестов
+│   ├── main_test_.cpp        # Точка входа тестов
 │   ├── complex_tests.cpp
 │   ├── matrix_tests.cpp
 │   └── polynom_tests.cpp
-├── resources/                # Ресурсы (иконки, .qrc)
+├── resources/                # Ресурсы (иконки, .rc)
 ├── CMakeLists.txt            # Основной файл сборки
 └── README.md                 # Документация
 ```
