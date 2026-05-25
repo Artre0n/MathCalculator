@@ -59,3 +59,13 @@ qt_generate_deploy_app_script(
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 install(SCRIPT ${deploy_script})
+
+enable_testing()
+
+add_subdirectory(tests)
+
+add_custom_target(run-tests
+    COMMAND MathCalculatorTests
+    DEPENDS MathCalculatorTests
+    COMMENT "Running pure C++ tests..."
+)
